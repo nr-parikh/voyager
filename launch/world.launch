@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find hector_gazebo_worlds)/launch/start.launch">
+   <arg name="world" value="$(find voyager)/world/test_world.world"/> 
+  </include>
+
+  <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" >
+    <arg name="model" value="$(find hector_quadrotor_description)/urdf/quadrotor_with_asus.gazebo.xacro"/>
+    <arg name="controllers" value="
+        controller/pose
+        controller/twist
+        controller/attitude
+        controller/velocity
+        controller/position
+        "/>
+	<arg name="x" default="0.0"/>
+	<arg name="y" default="-2.0"/>
+	<arg name="z" default="0.3"/>
+
+  </include>
+
+</launch>
