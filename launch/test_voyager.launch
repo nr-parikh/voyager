@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+
+<launch>
+<node name="voyager_node" pkg="voyager" type="voyager_node" output="screen"/>
+<test test-name="voyager_test" pkg="voyager" type="voyager_test"/>
+</launch>

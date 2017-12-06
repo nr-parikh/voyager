@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   roscpp
   std_msgs
+  sensor_msgs
+  geometry_msgs 
 )
 
 set (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
@@ -104,9 +106,9 @@ set (CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  # INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES beginner_tutorials
-  # CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS roscpp std_msgs roscpp rospy sensor_msgs geometry_msgs
 #  DEPENDS system_lib
 )
 
@@ -116,10 +118,10 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(
-#   include
-#   ${catkin_INCLUDE_DIRS}
-# )
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -134,6 +136,7 @@ catkin_package(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+add_executable(${PROJECT_NAME}_node src/voyager.cpp src/laser_scan.cpp src/planner.cpp src/quadrotor.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -146,9 +149,9 @@ catkin_package(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(main_node
-#    ${catkin_LIBRARIES}
-# )
+target_link_libraries(${PROJECT_NAME}_node
+   ${catkin_LIBRARIES}
+)
 #############
 ## Install ##
 #############
@@ -187,3 +190,32 @@ catkin_package(
 #############
 ## Testing ##
 #############
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+
+  add_rostest_gtest(
+    voyager_test
+    launch/test_voyager.launch
+    test/test_${PROJECT_NAME}_node.cpp
+    test/test_laser_scan.cpp
+    # test/test_planner.cpp
+    # test/test_quadrotor.cpp
+    src/laser_scan.cpp
+    # src/planner.cpp
+    # src/quadrotor.cpp
+
+  )
+
+  target_link_libraries(
+    voyager_test
+    ${catkin_LIBRARIES}
+  )
+
+  add_dependencies(
+    voyager_test
+    ${PROJECT_NAME}_node
+    ${${PROJECT_NAME}_EXPORTED_TARGETS}
+    ${catkin_EXPORTED_TARGETS}
+  )
+endif()
