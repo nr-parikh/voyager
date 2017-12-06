@@ -199,10 +199,10 @@ if(CATKIN_ENABLE_TESTING)
     launch/test_voyager.launch
     test/test_${PROJECT_NAME}_node.cpp
     test/test_laser_scan.cpp
-    # test/test_planner.cpp
+    test/test_planner.cpp
     # test/test_quadrotor.cpp
     src/laser_scan.cpp
-    # src/planner.cpp
+    src/planner.cpp
     # src/quadrotor.cpp
 
   )
