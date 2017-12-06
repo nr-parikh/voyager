@@ -200,10 +200,10 @@ if(CATKIN_ENABLE_TESTING)
     test/test_${PROJECT_NAME}_node.cpp
     test/test_laser_scan.cpp
     test/test_planner.cpp
-    # test/test_quadrotor.cpp
+    test/test_quadrotor.cpp
     src/laser_scan.cpp
     src/planner.cpp
-    # src/quadrotor.cpp
+    src/quadrotor.cpp
 
   )
 
