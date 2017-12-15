@@ -1,0 +1,5 @@
+# Incoming parameter of the service. 
+bool explore_flag
+---
+# Response of the service.
+bool response

@@ -31,9 +31,11 @@
  *
  */
 
+#include <hector_uav_msgs/EnableMotors.h>
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-#include "voyager/laser_scan.hpp"
+#include "voyager/explore.h"
+#include "voyager/quadrotor.hpp"
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "voyager_node");
@@ -42,7 +44,36 @@ int main(int argc, char** argv) {
 
   ROS_INFO_STREAM("Starting Voyager node...");
 
-  ros::spin();
+  ros::ServiceClient exploreClient =
+      nh.serviceClient<voyager::explore>("explore");
 
+  ros::ServiceClient motorsClient =
+      nh.serviceClient<hector_uav_msgs::EnableMotors>("enable_motors");
+
+  hector_uav_msgs::EnableMotors srv;
+  srv.request.enable = true;
+
+  if (motorsClient.call(srv)) {
+    ROS_INFO_STREAM("Enabling motors...");
+  }
+
+  if (ros::service::waitForService("explore", 1000)) {
+    ROS_INFO_STREAM("The service is available!");
+  }
+
+  Quadrotor quad;
+
+  while (ros::ok()) {
+    if (quad.getExplorerFlag()) {
+      quad.exploreAndMap();
+    } else {
+      quad.stop();
+    }
+    ros::spinOnce();
+  }
+  srv.request.enable = false;
+  if (motorsClient.call(srv)) {
+    ROS_INFO_STREAM("Disabling motors...");
+  }
   return 0;
 }
