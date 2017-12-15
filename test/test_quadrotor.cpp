@@ -31,14 +31,37 @@
  *
  */
 
-#include <gtest/gtest.h> 
+#include <gtest/gtest.h>
 #include <ros/ros.h>
 #include "voyager/quadrotor.hpp"
 
 TEST(TEST_QUADROTOR, TestQuadrotorRunning) {
-  
   Quadrotor quad;
 
   EXPECT_TRUE(quad.isAlive());
+}
 
+TEST(TEST_QUADROTOR, TestQuadrotorHeightSubscriber) {
+  ros::NodeHandle nh;
+  Quadrotor quad;
+
+  ros::Publisher testPub = nh.advertise<sensor_msgs::Range>("/sonar_height", 0);
+  ros::WallDuration(1).sleep();
+  EXPECT_EQ(testPub.getNumSubscribers(), 2);
+}
+
+TEST(TEST_QUADROTOR, TestQuadrotorGetHeight) {
+  Quadrotor quad;
+
+  sensor_msgs::Range rangeMsg;
+
+  rangeMsg.radiation_type = 0;
+  rangeMsg.field_of_view = 0.0;
+  rangeMsg.min_range = 0.0;
+  rangeMsg.max_range = 0.0;
+  rangeMsg.range = 0.0;
+
+  quad.heightCallback(rangeMsg);
+
+  EXPECT_EQ(quad.getHeight(), 0.0);
 }

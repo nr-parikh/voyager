@@ -31,14 +31,49 @@
  *
  */
 
-#include <gtest/gtest.h> 
+#include <gtest/gtest.h>
 #include <ros/ros.h>
 #include "voyager/laser_scan.hpp"
 
+
 TEST(TEST_LASERSCAN, TestLaserScanRunning) {
-  
   LaserScan scanner;
 
   EXPECT_TRUE(scanner.isAlive());
+}
 
+TEST(TEST_LASERSCAN, TestLaserScanSubscriber) {
+  ros::NodeHandle nh;
+  auto testPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 0);
+  ros::WallDuration(1).sleep();
+  EXPECT_EQ(testPub.getNumSubscribers(), 1);
+}
+
+TEST(TEST_LASERSCAN, TestLaserScanCheckCollision) {
+  std::vector<float> array1(1081, 0.0);
+
+  sensor_msgs::LaserScan scanMsg;
+  scanMsg.angle_min = 0;
+  scanMsg.angle_max = 0;
+  scanMsg.angle_increment = 1;
+  scanMsg.time_increment = 0;
+  scanMsg.scan_time = 0;
+  scanMsg.range_min = 0;
+  scanMsg.range_max = 0;
+  scanMsg.ranges = array1;
+  scanMsg.intensities.push_back(0);
+
+  LaserScan scanner;
+
+  scanner.scanCallback(scanMsg);
+
+  EXPECT_EQ(scanner.checkCollision(), true);
+
+  std::vector<float> array2(1081, 4.0);
+
+  scanMsg.ranges = array2;
+
+  scanner.scanCallback(scanMsg);
+
+  EXPECT_EQ(scanner.checkCollision(), false);
 }

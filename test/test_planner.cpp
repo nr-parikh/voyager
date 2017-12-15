@@ -31,14 +31,24 @@
  *
  */
 
-#include <gtest/gtest.h> 
+#include <gtest/gtest.h>
 #include <ros/ros.h>
 #include "voyager/planner.hpp"
 
-TEST(TEST_PLANNER, TestPlanner) {
-  
+void callBack(const geometry_msgs::Twist& msg) {}
+
+TEST(TEST_PLANNER, TestPlannerAlive) {
   Planner planner;
 
   EXPECT_TRUE(planner.isAlive());
+}
 
+TEST(TEST_PLANNER, TestPlannerPublisher) {
+  ros::NodeHandle nh;
+  auto testSub = nh.subscribe("/cmd_vel", 1, callBack);
+
+  ros::WallDuration(1).sleep();
+  ros::spinOnce();
+
+  EXPECT_EQ(testSub.getNumPublishers(), 1);
 }
