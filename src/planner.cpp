@@ -30,21 +30,53 @@
  * Implementation of the class Planner
  *
  */
- 
-#include "voyager/planner.hpp"
 
-Planner::Planner(){
-	is_running_ = true;
+#include "voyager/planner.hpp"
+#include <stdlib.h>
+
+Planner::Planner() {
+  is_running_ = true;
+  ROS_INFO_STREAM("Initializing the Planner...");
+  vel_pub_ = nh_planner_.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
+  vel_msg_.linear.x = 0;
+  vel_msg_.linear.y = 0;
+  vel_msg_.linear.z = 0;
+  vel_msg_.angular.x = 0;
+  vel_msg_.angular.y = 0;
+  vel_msg_.angular.z = 0;
+  vel_pub_.publish(vel_msg_);
 }
 
-Planner::~Planner(){
-
+Planner::~Planner() {
+  is_running_ = false;
+  stop();
 }
 
 auto Planner::takeAction() -> void {
-
+  if (!laser_scan_.checkCollision()) {
+    vel_msg_.linear.x = 0.5;
+    vel_msg_.angular.z = 0.0;
+    vel_pub_.publish(vel_msg_);
+  } else {
+    vel_msg_.linear.x = 0.0;
+    vel_msg_.angular.z = -0.3;
+    vel_pub_.publish(vel_msg_);
+  }
 }
 
-auto Planner::isAlive() -> bool {
-	return is_running_;
+auto Planner::isAlive() -> bool { return is_running_; }
+
+auto Planner::setVelocity(float velocity) -> void {
+  vel_msg_.linear.z = velocity;
+  vel_pub_.publish(vel_msg_);
+}
+
+auto Planner::stop() -> void {
+  vel_msg_.linear.x = 0;
+  vel_msg_.linear.y = 0;
+  vel_msg_.linear.z = 0;
+  vel_msg_.angular.x = 0;
+  vel_msg_.angular.y = 0;
+  vel_msg_.angular.z = 0;
+  vel_pub_.publish(vel_msg_);
 }
