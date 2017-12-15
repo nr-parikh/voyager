@@ -27,49 +27,62 @@
  * @copyright MIT license (c) 2017 Neel Parikh
  *
  * @brief DESCRIPTION
- * Header file for the classs Planner.
+ * Header file for the class Planner.
  *
  */
- 
+
 #ifndef INCLUDE_VOYAGER_PLANNER_HPP_
 #define INCLUDE_VOYAGER_PLANNER_HPP_
 
-#include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
+#include <ros/ros.h>
 #include "voyager/laser_scan.hpp"
 
-class Planner
-{
-public:
-	/**
-	 * @brief Constructor of the class 
-	 * @details Construct an abject of the class 
-	 */
-	Planner();
-	/**
-	 * @brief Destructor of the class 
-	 * @details Take actions that needs to be done while destroying
-	 */
-	~Planner();
-	/**
-	 * @brief Take the action
-	 * @details Move robot according if there are no obstacles 
-	 * @return void: Return nothing 
-	 */
-	auto takeAction()->void;
-	/**
-	 * @brief Check if running 
-	 * @details Set to true as long as the node is running  
-	 * @return bool: Return true if running 
-	 */	
-	auto isAlive()->bool;
-private:
-	LaserScan laser_scan_; ///< Instance of LaserScan class 
-	bool is_running_; ///< Flag to check if running 
-	ros::NodeHandle nh_planner_; ///< Nodehandle for the planner class 
-	geometry_msgs::Twist vel_msg_; ///< Message over which data will be published 
-	ros::Publisher vel_pub_; ///< Publisher for publishing velocity
-	
+class Planner {
+ public:
+  /**
+   * @brief Constructor of the class
+   * @details Construct an abject of the class
+   */
+  Planner();
+  /**
+   * @brief Destructor of the class
+   * @details Take actions that needs to be done while destroying
+   */
+  ~Planner();
+  /**
+   * @brief Take the action
+   * @details Move robot according if there are no obstacles
+   * @return void: Return nothing
+   */
+  auto takeAction() -> void;
+  /**
+   * @brief Check if running
+   * @details Set to true as long as the node is running
+   * @return bool: Return true if running
+   */
+  auto isAlive() -> bool;
+  /**
+   * @brief Function to set velocity
+   * @details Use this function to set vertical velocity of the robot
+   *
+   * @param velocity: Velocity to be set
+   * @return void: Return nothing
+   */
+  auto setVelocity(float velocity) -> void;
+  /**
+   * @brief Stop function for the planner
+   * @details Function to stop the planner and publish 0 values to velocity
+   * @return void: Return nothing
+   */
+  auto stop() -> void;
+
+ private:
+  LaserScan laser_scan_;          ///< Instance of LaserScan class
+  bool is_running_;               ///< Flag to check if running
+  ros::NodeHandle nh_planner_;    ///< Nodehandle for the planner class
+  geometry_msgs::Twist vel_msg_;  ///< Message over which data will be published
+  ros::Publisher vel_pub_;        ///< Publisher for publishing velocity
 };
 
-#endif // INCLUDE_VOYAGER_PLANNER_HPP_
+#endif  // INCLUDE_VOYAGER_PLANNER_HPP_

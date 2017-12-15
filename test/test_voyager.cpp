@@ -38,12 +38,13 @@
 #include "voyager/quadrotor.hpp"
 
 TEST(TEST_VOYAGER, TestVoyagerService) {
+  // Create an instance of Quadrotor
   Quadrotor quad;
-
+  // Create a nodehandle
   ros::NodeHandle nh;
-
+  // Create a service client
   ros::ServiceClient client = nh.serviceClient<voyager::explore>("explore");
-
+  // Check if service exists
   bool exists(client.waitForExistence(ros::Duration(50)));
   EXPECT_TRUE(exists);
 }

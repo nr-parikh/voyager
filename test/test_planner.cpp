@@ -35,20 +35,26 @@
 #include <ros/ros.h>
 #include "voyager/planner.hpp"
 
-void callBack(const geometry_msgs::Twist& msg) {}
+void callBack(const geometry_msgs::Twist& msg) {
+  // Dummy callback function to test publishers
+}
 
 TEST(TEST_PLANNER, TestPlannerAlive) {
+  // Create an instance of planner
   Planner planner;
-
+  // Check if running
   EXPECT_TRUE(planner.isAlive());
 }
 
 TEST(TEST_PLANNER, TestPlannerPublisher) {
+  // Create a node handle
   ros::NodeHandle nh;
+  // Create a subscriber
   auto testSub = nh.subscribe("/cmd_vel", 1, callBack);
-
+  // Waot for some time
   ros::WallDuration(1).sleep();
+  // Spine in callbacks
   ros::spinOnce();
-
+  // Check the number of publishers
   EXPECT_EQ(testSub.getNumPublishers(), 1);
 }

@@ -35,24 +35,30 @@
 #include <ros/ros.h>
 #include "voyager/laser_scan.hpp"
 
-
 TEST(TEST_LASERSCAN, TestLaserScanRunning) {
+  // Create an instance of laser scanner
   LaserScan scanner;
-
+  // Check if running
   EXPECT_TRUE(scanner.isAlive());
 }
 
 TEST(TEST_LASERSCAN, TestLaserScanSubscriber) {
+  // Create node handle
   ros::NodeHandle nh;
+  // Create a dummy publisher
   auto testPub = nh.advertise<sensor_msgs::LaserScan>("/scan", 0);
+  // Wait for some time
   ros::WallDuration(1).sleep();
+  // Check number of subscribers
   EXPECT_EQ(testPub.getNumSubscribers(), 1);
 }
 
 TEST(TEST_LASERSCAN, TestLaserScanCheckCollision) {
+  // Create a fake laser scan message
   std::vector<float> array1(1081, 0.0);
-
+  // Create a message
   sensor_msgs::LaserScan scanMsg;
+  // Set the values
   scanMsg.angle_min = 0;
   scanMsg.angle_max = 0;
   scanMsg.angle_increment = 1;
@@ -63,17 +69,17 @@ TEST(TEST_LASERSCAN, TestLaserScanCheckCollision) {
   scanMsg.ranges = array1;
   scanMsg.intensities.push_back(0);
 
+  // Create an object
   LaserScan scanner;
-
+  // Call the call back function
   scanner.scanCallback(scanMsg);
-
+  // Check if the flag is set to true
   EXPECT_EQ(scanner.checkCollision(), true);
-
+  // Update the message to the other extreme condition
   std::vector<float> array2(1081, 4.0);
-
   scanMsg.ranges = array2;
-
+  // Call the callback function
   scanner.scanCallback(scanMsg);
-
+  // Check if the flag is set to false
   EXPECT_EQ(scanner.checkCollision(), false);
 }

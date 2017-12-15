@@ -1,0 +1,17 @@
+nrparikh@neel-XPS:~/hector_quadrotor_tutorial/src/voyager$ cpplint $( find . -name \*.hpp -or -name \*.cpp | grep -vE -e "^./build/" -e "^./vendor/" -e "^./docs/" -e "^./results" )
+Done processing ./src/laser_scan.cpp
+Done processing ./src/quadrotor.cpp
+Done processing ./src/planner.cpp
+Done processing ./src/voyager.cpp
+./include/voyager/quadrotor.hpp:90:  Is this a non-const reference? If so, make const or use a pointer: voyager::explore::Request& request  [runtime/references] [2]
+./include/voyager/quadrotor.hpp:91:  Is this a non-const reference? If so, make const or use a pointer: voyager::explore::Request& request  [runtime/references] [2]
+./include/voyager/quadrotor.hpp:91:  Is this a non-const reference? If so, make const or use a pointer: voyager::explore::Response& resp  [runtime/references] [2]
+Done processing ./include/voyager/quadrotor.hpp
+Done processing ./include/voyager/planner.hpp
+Done processing ./include/voyager/laser_scan.hpp
+Done processing ./test/test_planner.cpp
+Done processing ./test/test_voyager_node.cpp
+Done processing ./test/test_laser_scan.cpp
+Done processing ./test/test_voyager.cpp
+Done processing ./test/test_quadrotor.cpp
+Total errors found: 3

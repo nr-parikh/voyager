@@ -31,18 +31,18 @@
  *
  */
 
-#ifndef INCLUDE_VOYAGER_LASER_SCAN_
-#define INCLUDE_VOYAGER_LASER_SCAN_ 
+#ifndef INCLUDE_VOYAGER_LASER_SCAN_HPP_
+#define INCLUDE_VOYAGER_LASER_SCAN_HPP_
 
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
 
 class LaserScan {
  public:
- /**
-  * @brief Constructor of the class 
-  * @details Initialize node handle as well as set is_running_ flag to true
-  */
+  /**
+   * @brief Constructor of the class
+   * @details Initialize node handle as well as set is_running_ flag to true
+   */
   LaserScan();
   /**
    * @brief Destructor of the class
@@ -51,22 +51,31 @@ class LaserScan {
   ~LaserScan();
   /**
    * @brief Callback function
-   * @details Callback function for LaserScan messages. Check if there is any collision. 
-   * 
-   * @param scan_msg Incoming message of type sensor_msgs/LaserScan 
+   * @details Callback function for LaserScan messages. Check if there is any
+   * collision.
+   *
+   * @param scan_msg Incoming message of type sensor_msgs/LaserScan
    */
-  auto scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan_msg)->void;
+  auto scanCallback(const sensor_msgs::LaserScan scan_msg) -> void;
   /**
-   * @brief Check if running 
-   * @details Set to true as long as the node is running  
-   * @return bool: Return true if running 
-   */ 
-  auto isAlive()->bool;
+   * @brief Check if running
+   * @details Set to true as long as the node is running
+   * @return bool: Return true if running
+   */
+  auto isAlive() -> bool;
+  /**
+   * @brief Return the obstacle flag
+   * @details Return true if the obstacle is present, false otherwise
+   * @return bool: Return the value of flag
+   */
+  auto checkCollision() -> bool;
+
  private:
-    ros::NodeHandle nh_laser_scan_; ///< Node handle for this class 
-    bool is_running_; ///< Flag to indicate if the class is running 
-    bool obstacle_flag_; ///< Flag to indicate if obstacle is detected 
-    ros::Subscriber scan_sub_; ///< Subscriber that can be used to listen to LaserScan messages
+  ros::NodeHandle nh_laser_scan_;  ///< Node handle for this class
+  bool is_running_;                ///< Flag to indicate if the class is running
+  bool obstacle_flag_;             ///< Flag to indicate if obstacle is detected
+  ros::Subscriber scan_sub_;       ///< Subscriber that can be used to listen to
+                                   ///< LaserScan messages
 };
 
-#endif
+#endif  // INCLUDE_VOYAGER_LASER_SCAN_HPP_
