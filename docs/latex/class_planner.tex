@@ -1,0 +1,149 @@
+\hypertarget{class_planner}{}\section{Planner Class Reference}
+\label{class_planner}\index{Planner@{Planner}}
+
+
+{\ttfamily \#include $<$planner.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_planner_aceff4e3c859cc6bea1fda3c9e4ad034f}{Planner} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+\hyperlink{class_planner_ac3db7cf113ad368fa6fce636b6e94abe}{$\sim$\+Planner} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
+auto \hyperlink{class_planner_a2912d9cf4a7829f426235ca034f82a8c}{take\+Action} () -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Take the action. \end{DoxyCompactList}\item 
+auto \hyperlink{class_planner_a2ececa5b75f299577946cd0052e113d9}{is\+Alive} () -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Check if running. \end{DoxyCompactList}\item 
+auto \hyperlink{class_planner_adef66489519340083870df8b439408a1}{set\+Velocity} (float velocity) -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Function to set velocity. \end{DoxyCompactList}\item 
+auto \hyperlink{class_planner_a1fcd576062dcbad33615c6422289088d}{stop} () -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Stop function for the planner. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 41 of file planner.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Planner@{Planner}!Planner@{Planner}}
+\index{Planner@{Planner}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{Planner()}{Planner()}}]{\setlength{\rightskip}{0pt plus 5cm}Planner\+::\+Planner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_planner_aceff4e3c859cc6bea1fda3c9e4ad034f}{}\label{class_planner_aceff4e3c859cc6bea1fda3c9e4ad034f}
+
+
+Constructor of the class. 
+
+Construct an abject of the class 
+
+Definition at line 37 of file planner.\+cpp.
+
+\index{Planner@{Planner}!````~Planner@{$\sim$\+Planner}}
+\index{````~Planner@{$\sim$\+Planner}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{$\sim$\+Planner()}{~Planner()}}]{\setlength{\rightskip}{0pt plus 5cm}Planner\+::$\sim$\+Planner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_planner_ac3db7cf113ad368fa6fce636b6e94abe}{}\label{class_planner_ac3db7cf113ad368fa6fce636b6e94abe}
+
+
+Destructor of the class. 
+
+Take actions that needs to be done while destroying 
+
+Definition at line 54 of file planner.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{Planner@{Planner}!is\+Alive@{is\+Alive}}
+\index{is\+Alive@{is\+Alive}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{is\+Alive() -\/$>$ bool}{isAlive() -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Planner\+::is\+Alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_planner_a2ececa5b75f299577946cd0052e113d9}{}\label{class_planner_a2ececa5b75f299577946cd0052e113d9}
+
+
+Check if running. 
+
+Set to true as long as the node is running \begin{DoxyReturn}{Returns}
+bool\+: Return true if running 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file planner.\+cpp.
+
+\index{Planner@{Planner}!set\+Velocity@{set\+Velocity}}
+\index{set\+Velocity@{set\+Velocity}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{set\+Velocity(float velocity) -\/$>$ void}{setVelocity(float velocity) -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Planner\+::set\+Velocity (
+\begin{DoxyParamCaption}
+\item[{float}]{velocity}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_planner_adef66489519340083870df8b439408a1}{}\label{class_planner_adef66489519340083870df8b439408a1}
+
+
+Function to set velocity. 
+
+Use this function to set vertical velocity of the robot
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & Velocity to be set \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file planner.\+cpp.
+
+\index{Planner@{Planner}!stop@{stop}}
+\index{stop@{stop}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{stop() -\/$>$ void}{stop() -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Planner\+::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_planner_a1fcd576062dcbad33615c6422289088d}{}\label{class_planner_a1fcd576062dcbad33615c6422289088d}
+
+
+Stop function for the planner. 
+
+Function to stop the planner and publish 0 values to velocity \begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 90 of file planner.\+cpp.
+
+\index{Planner@{Planner}!take\+Action@{take\+Action}}
+\index{take\+Action@{take\+Action}!Planner@{Planner}}
+\subsubsection[{\texorpdfstring{take\+Action() -\/$>$ void}{takeAction() -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Planner\+::take\+Action (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_planner_a2912d9cf4a7829f426235ca034f82a8c}{}\label{class_planner_a2912d9cf4a7829f426235ca034f82a8c}
+
+
+Take the action. 
+
+Move robot according if there are no obstacles \begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file planner.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/include/voyager/\hyperlink{planner_8hpp}{planner.\+hpp}\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/src/\hyperlink{planner_8cpp}{planner.\+cpp}\end{DoxyCompactItemize}

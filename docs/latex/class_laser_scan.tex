@@ -1,0 +1,126 @@
+\hypertarget{class_laser_scan}{}\section{Laser\+Scan Class Reference}
+\label{class_laser_scan}\index{Laser\+Scan@{Laser\+Scan}}
+
+
+{\ttfamily \#include $<$laser\+\_\+scan.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_laser_scan_ae1c29cf38fcdf0c649691b8c609e5ce7}{Laser\+Scan} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+\hyperlink{class_laser_scan_adab7acdb2d59acb2350a1e4d93981b8a}{$\sim$\+Laser\+Scan} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
+auto \hyperlink{class_laser_scan_a5550d5c98d7456d6f90fd34bda650cde}{scan\+Callback} (const sensor\+\_\+msgs\+::\+Laser\+Scan scan\+\_\+msg) -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Callback function. \end{DoxyCompactList}\item 
+auto \hyperlink{class_laser_scan_aab0d1a864bf9d96a0396f1235d327dbd}{is\+Alive} () -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Check if running. \end{DoxyCompactList}\item 
+auto \hyperlink{class_laser_scan_ac86a1b1d140a88c4f4f47aaddc6de798}{check\+Collision} () -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Return the obstacle flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 40 of file laser\+\_\+scan.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Laser\+Scan@{Laser\+Scan}!Laser\+Scan@{Laser\+Scan}}
+\index{Laser\+Scan@{Laser\+Scan}!Laser\+Scan@{Laser\+Scan}}
+\subsubsection[{\texorpdfstring{Laser\+Scan()}{LaserScan()}}]{\setlength{\rightskip}{0pt plus 5cm}Laser\+Scan\+::\+Laser\+Scan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_laser_scan_ae1c29cf38fcdf0c649691b8c609e5ce7}{}\label{class_laser_scan_ae1c29cf38fcdf0c649691b8c609e5ce7}
+
+
+Constructor of the class. 
+
+Initialize node handle as well as set is\+\_\+running\+\_\+ flag to true 
+
+Definition at line 37 of file laser\+\_\+scan.\+cpp.
+
+\index{Laser\+Scan@{Laser\+Scan}!````~Laser\+Scan@{$\sim$\+Laser\+Scan}}
+\index{````~Laser\+Scan@{$\sim$\+Laser\+Scan}!Laser\+Scan@{Laser\+Scan}}
+\subsubsection[{\texorpdfstring{$\sim$\+Laser\+Scan()}{~LaserScan()}}]{\setlength{\rightskip}{0pt plus 5cm}Laser\+Scan\+::$\sim$\+Laser\+Scan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_laser_scan_adab7acdb2d59acb2350a1e4d93981b8a}{}\label{class_laser_scan_adab7acdb2d59acb2350a1e4d93981b8a}
+
+
+Destructor of the class. 
+
+Write actions that needs to be done when destroying the object 
+
+Definition at line 47 of file laser\+\_\+scan.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{Laser\+Scan@{Laser\+Scan}!check\+Collision@{check\+Collision}}
+\index{check\+Collision@{check\+Collision}!Laser\+Scan@{Laser\+Scan}}
+\subsubsection[{\texorpdfstring{check\+Collision() -\/$>$ bool}{checkCollision() -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Laser\+Scan\+::check\+Collision (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_laser_scan_ac86a1b1d140a88c4f4f47aaddc6de798}{}\label{class_laser_scan_ac86a1b1d140a88c4f4f47aaddc6de798}
+
+
+Return the obstacle flag. 
+
+Return true if the obstacle is present, false otherwise \begin{DoxyReturn}{Returns}
+bool\+: Return the value of flag 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file laser\+\_\+scan.\+cpp.
+
+\index{Laser\+Scan@{Laser\+Scan}!is\+Alive@{is\+Alive}}
+\index{is\+Alive@{is\+Alive}!Laser\+Scan@{Laser\+Scan}}
+\subsubsection[{\texorpdfstring{is\+Alive() -\/$>$ bool}{isAlive() -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Laser\+Scan\+::is\+Alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_laser_scan_aab0d1a864bf9d96a0396f1235d327dbd}{}\label{class_laser_scan_aab0d1a864bf9d96a0396f1235d327dbd}
+
+
+Check if running. 
+
+Set to true as long as the node is running \begin{DoxyReturn}{Returns}
+bool\+: Return true if running 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file laser\+\_\+scan.\+cpp.
+
+\index{Laser\+Scan@{Laser\+Scan}!scan\+Callback@{scan\+Callback}}
+\index{scan\+Callback@{scan\+Callback}!Laser\+Scan@{Laser\+Scan}}
+\subsubsection[{\texorpdfstring{scan\+Callback(const sensor\+\_\+msgs\+::\+Laser\+Scan scan\+\_\+msg) -\/$>$ void}{scanCallback(const sensor_msgs::LaserScan scan_msg) -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Laser\+Scan\+::scan\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Laser\+Scan}]{scan\+\_\+msg}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_laser_scan_a5550d5c98d7456d6f90fd34bda650cde}{}\label{class_laser_scan_a5550d5c98d7456d6f90fd34bda650cde}
+
+
+Callback function. 
+
+Callback function for \hyperlink{class_laser_scan}{Laser\+Scan} messages. Check if there is any collision.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scan\+\_\+msg} & Incoming message of type sensor\+\_\+msgs/\+Laser\+Scan \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file laser\+\_\+scan.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/include/voyager/\hyperlink{laser__scan_8hpp}{laser\+\_\+scan.\+hpp}\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/src/\hyperlink{laser__scan_8cpp}{laser\+\_\+scan.\+cpp}\end{DoxyCompactItemize}

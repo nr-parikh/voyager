@@ -1,0 +1,219 @@
+\hypertarget{class_quadrotor}{}\section{Quadrotor Class Reference}
+\label{class_quadrotor}\index{Quadrotor@{Quadrotor}}
+
+
+{\ttfamily \#include $<$quadrotor.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_quadrotor_a07d8eee0967402173f8e5f7c9f68b87c}{Quadrotor} ()
+\begin{DoxyCompactList}\small\item\em Constructor of the class. \end{DoxyCompactList}\item 
+\hyperlink{class_quadrotor_aba3d192815f20e50aa79a5626b21fd9f}{$\sim$\+Quadrotor} ()
+\begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_ada6914b0c52f80bc8eee1382eac87212}{explore\+And\+Map} () -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Explore the environment. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_a2b0649be2fcbd1adae9de65e7290220b}{is\+Alive} () -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Check if running. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_aa9d554a75dc370d45f7b393a92fd8776}{height\+Callback} (const sensor\+\_\+msgs\+::\+Range height\+\_\+msg) -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Callback function. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_a91af017513dfd6ef295844bb14718570}{get\+Height} () -\/$>$ float
+\begin{DoxyCompactList}\small\item\em Get height from ground. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_aed44451b0e0c8c1f7b655e228dd28d09}{explore} (voyager\+::explore\+::\+Request \&request, voyager\+::explore\+::\+Response \&resp) -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Callback function for service. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_acb90f0c48bb49cce21fe5daceea41ab6}{get\+Explorer\+Flag} () -\/$>$ bool
+\begin{DoxyCompactList}\small\item\em Get explore flag. \end{DoxyCompactList}\item 
+auto \hyperlink{class_quadrotor_a9cc6a240dedc43bbf92432a128755ed2}{stop} () -\/$>$ void
+\begin{DoxyCompactList}\small\item\em Stop the robot. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 43 of file quadrotor.\+hpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Quadrotor@{Quadrotor}!Quadrotor@{Quadrotor}}
+\index{Quadrotor@{Quadrotor}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{Quadrotor()}{Quadrotor()}}]{\setlength{\rightskip}{0pt plus 5cm}Quadrotor\+::\+Quadrotor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_quadrotor_a07d8eee0967402173f8e5f7c9f68b87c}{}\label{class_quadrotor_a07d8eee0967402173f8e5f7c9f68b87c}
+
+
+Constructor of the class. 
+
+Construct an abject of the class 
+
+Definition at line 37 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!````~Quadrotor@{$\sim$\+Quadrotor}}
+\index{````~Quadrotor@{$\sim$\+Quadrotor}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{$\sim$\+Quadrotor()}{~Quadrotor()}}]{\setlength{\rightskip}{0pt plus 5cm}Quadrotor\+::$\sim$\+Quadrotor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_quadrotor_aba3d192815f20e50aa79a5626b21fd9f}{}\label{class_quadrotor_aba3d192815f20e50aa79a5626b21fd9f}
+
+
+Destructor of the class. 
+
+Take actions that needs to be done while destroying 
+
+Definition at line 51 of file quadrotor.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\index{Quadrotor@{Quadrotor}!explore@{explore}}
+\index{explore@{explore}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{explore(voyager\+::explore\+::\+Request \&request, voyager\+::explore\+::\+Response \&resp) -\/$>$ bool}{explore(voyager::explore::Request &request, voyager::explore::Response &resp) -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::explore (
+\begin{DoxyParamCaption}
+\item[{voyager\+::explore\+::\+Request \&}]{request, }
+\item[{voyager\+::explore\+::\+Response \&}]{resp}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_quadrotor_aed44451b0e0c8c1f7b655e228dd28d09}{}\label{class_quadrotor_aed44451b0e0c8c1f7b655e228dd28d09}
+
+
+Callback function for service. 
+
+Function callback for the service explore used by voyager
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & Request of the service \\
+\hline
+{\em resp} & Response of the service\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool\+: Return true if succeeded 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!explore\+And\+Map@{explore\+And\+Map}}
+\index{explore\+And\+Map@{explore\+And\+Map}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{explore\+And\+Map() -\/$>$ void}{exploreAndMap() -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::explore\+And\+Map (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_quadrotor_ada6914b0c52f80bc8eee1382eac87212}{}\label{class_quadrotor_ada6914b0c52f80bc8eee1382eac87212}
+
+
+Explore the environment. 
+
+Allow the robot to move and map the environment \begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!get\+Explorer\+Flag@{get\+Explorer\+Flag}}
+\index{get\+Explorer\+Flag@{get\+Explorer\+Flag}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{get\+Explorer\+Flag() -\/$>$ bool}{getExplorerFlag() -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::get\+Explorer\+Flag (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_quadrotor_acb90f0c48bb49cce21fe5daceea41ab6}{}\label{class_quadrotor_acb90f0c48bb49cce21fe5daceea41ab6}
+
+
+Get explore flag. 
+
+Get the value of the explore flag set in service callback \begin{DoxyReturn}{Returns}
+bool\+: Return value of the flag 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{get\+Height() -\/$>$ float}{getHeight() -> float}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::get\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ float}\hypertarget{class_quadrotor_a91af017513dfd6ef295844bb14718570}{}\label{class_quadrotor_a91af017513dfd6ef295844bb14718570}
+
+
+Get height from ground. 
+
+Function to get the height of the robot from ground \begin{DoxyReturn}{Returns}
+float\+: Height 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!height\+Callback@{height\+Callback}}
+\index{height\+Callback@{height\+Callback}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{height\+Callback(const sensor\+\_\+msgs\+::\+Range height\+\_\+msg) -\/$>$ void}{heightCallback(const sensor_msgs::Range height_msg) -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::height\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Range}]{height\+\_\+msg}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_quadrotor_aa9d554a75dc370d45f7b393a92fd8776}{}\label{class_quadrotor_aa9d554a75dc370d45f7b393a92fd8776}
+
+
+Callback function. 
+
+Callback function to get height of the robot from the ground
+
+
+\begin{DoxyParams}{Parameters}
+{\em height\+\_\+msg} & Message being received \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!is\+Alive@{is\+Alive}}
+\index{is\+Alive@{is\+Alive}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{is\+Alive() -\/$>$ bool}{isAlive() -> bool}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::is\+Alive (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ bool}\hypertarget{class_quadrotor_a2b0649be2fcbd1adae9de65e7290220b}{}\label{class_quadrotor_a2b0649be2fcbd1adae9de65e7290220b}
+
+
+Check if running. 
+
+Set to true as long as the node is running \begin{DoxyReturn}{Returns}
+bool\+: Return true if running 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file quadrotor.\+cpp.
+
+\index{Quadrotor@{Quadrotor}!stop@{stop}}
+\index{stop@{stop}!Quadrotor@{Quadrotor}}
+\subsubsection[{\texorpdfstring{stop() -\/$>$ void}{stop() -> void}}]{\setlength{\rightskip}{0pt plus 5cm}auto Quadrotor\+::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) -\/$>$ void}\hypertarget{class_quadrotor_a9cc6a240dedc43bbf92432a128755ed2}{}\label{class_quadrotor_a9cc6a240dedc43bbf92432a128755ed2}
+
+
+Stop the robot. 
+
+Function to stop the robot \begin{DoxyReturn}{Returns}
+void\+: Return nothing 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file quadrotor.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/include/voyager/\hyperlink{quadrotor_8hpp}{quadrotor.\+hpp}\item 
+/home/nrparikh/hector\+\_\+quadrotor\+\_\+tutorial/src/voyager/src/\hyperlink{quadrotor_8cpp}{quadrotor.\+cpp}\end{DoxyCompactItemize}
