@@ -68,6 +68,7 @@ var NAVTREEINDEX0 =
 "test__quadrotor_8cpp.html#aff119c40d6a4e80d38350d4c9c66b739":[2,0,0,0,0,2,2,0],
 "test__quadrotor_8cpp_source.html":[2,0,0,0,0,2,2],
 "test__voyager_8cpp.html":[2,0,0,0,0,2,3],
+"test__voyager_8cpp.html#a84c9631503167ea7cf07737919c9fa81":[2,0,0,0,0,2,3,1],
 "test__voyager_8cpp.html#ad57033bb9599728e014adacff50fe6b7":[2,0,0,0,0,2,3,0],
 "test__voyager_8cpp_source.html":[2,0,0,0,0,2,3],
 "test__voyager__node_8cpp.html":[2,0,0,0,0,2,4],

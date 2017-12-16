@@ -1,7 +1,7 @@
 var NAVTREE =
 [
-  [ "Voyager", "index.html", [
-    [ "Voyager: Explore the world!", "md__home_nrparikh_hector_quadrotor_tutorial_src_voyager_README.html", null ],
+  [ "Voyager: Exploratpry robot", "index.html", [
+    [ "Voyager: Explore the environment!", "md__home_nrparikh_hector_quadrotor_tutorial_src_voyager_README.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],

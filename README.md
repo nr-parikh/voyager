@@ -186,6 +186,9 @@ The spreadsheet contains product backlog which gives overview of how the project
 Planning notes can be found [here](https://docs.google.com/document/d/1XSsnkajWHP6XwBxO1Zjkb_wmKyFWa5k23H9Gzb1IpiQ/edit?usp=sharing).
 
 ## <a name="present"></a> Presentation
+The slides for the final presentation can be found [here](https://docs.google.com/presentation/d/1I7c-rBKHdLnsbCT6sVaDmLgEeXg7oTwyJsZUmdR4C7E/edit?usp=sharing). 
+
+The video of the presentation as well as demo of the project can be found [here](https://youtu.be/Qogoys-AiRE).
 
 ## <a name="lic"></a> License
 The license of the document can be found [here](LICENSE).

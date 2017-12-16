@@ -48,3 +48,11 @@ TEST(TEST_VOYAGER, TestVoyagerService) {
   bool exists(client.waitForExistence(ros::Duration(50)));
   EXPECT_TRUE(exists);
 }
+
+TEST(TEST_VOYAGER, TestVoyagerServiceCall) {
+  Quadrotor quad;
+
+  voyager::explore srv;
+  srv.request.explore_flag = true;
+  EXPECT_TRUE(quad.explore(srv.request, srv.response));
+}

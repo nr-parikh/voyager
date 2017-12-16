@@ -55,9 +55,7 @@ int main(int argc, char** argv) {
   // Set the request
   srv.request.enable = true;
   // Call the service
-  if (motorsClient.call(srv)) {
-    ROS_INFO_STREAM("Enabling motors...");
-  }
+  motorsClient.call(srv);
   // Wait for service to advertise
   if (ros::service::waitForService("explore", 1000)) {
     ROS_INFO_STREAM("The service is available!");
@@ -80,8 +78,7 @@ int main(int argc, char** argv) {
   // Disable motors
   srv.request.enable = false;
   // Call the service
-  if (motorsClient.call(srv)) {
-    ROS_INFO_STREAM("Disabling motors...");
-  }
+  motorsClient.call(srv);
+
   return 0;
 }

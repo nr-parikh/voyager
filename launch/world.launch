@@ -42,4 +42,6 @@
 
   <node name="record" pkg="rosbag" type="record" args="--duration=30.0 -a -x /camera/(.*) -O $(find voyager)/results/voyager.bag" if="$(arg record_bag)"/>
 
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" output="screen" launch-prefix="gnome-terminal --command" if="$(arg use_teleop)"/>
+
 </launch>

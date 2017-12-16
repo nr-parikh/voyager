@@ -1,29 +1,246 @@
 \href{https://travis-ci.org/nr-parikh/voyager}{\tt } \href{https://github.com/nr-parikh/voyager/blob/master/LICENSE}{\tt }
 
-Voyager\+: Exploratory robot which performs S\+L\+AM in the environment.
+\subsection*{Contents}
 
-The S\+IP for the project can be found \href{https://docs.google.com/spreadsheets/d/11tZz-o4cJSky1bMGR0uIQGLcoGgMJUM74vtqE4XKSQ8/edit?usp=sharing}{\tt here}.
+
+\begin{DoxyItemize}
+\item \href{#overview}{\tt Overview}
+\item \href{#description}{\tt Robot description}
+\item \href{#algorithm}{\tt Algorithm}
+\item \href{#dependencies}{\tt Dependencies}
+\item \href{#building}{\tt Building the code}
+\begin{DoxyItemize}
+\item \href{#install-dependencies}{\tt Installing dependencies}
+\item \href{#build-project}{\tt Building the project}
+\end{DoxyItemize}
+\item \href{#running}{\tt Running}
+\item \href{#testing}{\tt Testing}
+\item \href{#docs}{\tt Documentation}
+\item \href{#sip}{\tt S\+IP process}
+\item \href{#present}{\tt Presentation}
+\item \href{#lic}{\tt License}
+\end{DoxyItemize}
+
+\subsection*{\label{_overview}%
+ Overview}
+
+Unmanned aerial vehicles(\+U\+A\+V) are becoming ubiquitous in recent times. As their usage increases they need to be able to know their surrounding and be able to perceive their surroundings. There are numerous applications of U\+A\+Vs like agricultural mapping, delivery systems, surveillance etc. In almost most of the applications exploring the environment and creating a map of it to localize itself is the key part to perceive the surroundings.
+
+For a unmanned ground vehicles it is not a problem to have a 2-\/D occupancy grid but in case of U\+A\+Vs it becomes mandatory to have a 3-\/D map of the environment. The trajectory planning of a U\+A\+Vs needs a 3-\/D map to have a good trajectory rather than an occupancy grid. In this project, a quadrotor vehicle for security surveillance/exploring the environment. The quadrotor will be able to create a map of the environment it is in while exploring the environment. This package has a simulated robot which can explore the environment and map it without colliding with the obstacles that might be present in the surrounding.
+
+\subsection*{\label{_description}%
+ Robot description}
+
+The quadrotor is a generic unmanned aerial vehicle of X-\/configuration. The robot has a laser scanner which it can use to perceive the environment around it. The task for the robot is to explore the environment and generate the map of it. The robot also has a front facing which can be used for various purposes. For the purpose of safety, the motors of the robot can be disabled with a kill switch.
+
+The simulated robot used in this package is from \href{http://wiki.ros.org/hector_quadrotor}{\tt Hector quadrotor} family of the packages by TU Darmstadt. It has a Hokuyo laser scanner which is mounted at the bottom of the robot. This laser scanner is used for detecting the presence of obstacles in the surrounding of the robot. Hector quadrotor also an Asus camera that has an ability to produce point clouds. In this project, the front facing camera of the robot is used to create a 3D map of the environment. The point cloud obtained from the camera is given to the \href{http://wiki.ros.org/octomap}{\tt Octomap} algorithm which creates a map of the environment. To monitor the height, the robot has a sonar sensor. The robot has a service {\ttfamily /enable\+\_\+motors} that can be used to disarm the motors in cases of emergency.
+
+\subsection*{\label{_algorithm}%
+ Algorithm}
+
+The algorithm used in this package is very naive. The robot has to explore the world without colliding with the environment. In order to check of the collision, the algorithm uses a readings from laser scanner. Since laser scanner gives the readings from all the directions and the readings of interest are only that occur in the from, the algorithm prunes the unnecessary data and then checks for presence of obstacle in that filtered data. If the obstacle is present then robot keeps rotating until it finds a free way to move and if there is no obstacle then it will keep moving forward. In order, to check the height of the robot from the ground it uses the readings from the sonar sensors. The algorithm constantly monitors the height of the robot and tries to maintain it to some constant value. If it goes below the threshold it thrusts up and it goes above the threshold it will try to go down.
+
+\subsection*{\label{_dependencies}%
+ Dependencies}
+
+The dependencies of this project are as given below\+:
+\begin{DoxyItemize}
+\item Ubuntu 16.\+04
+\item R\+OS Kinetic Kame
+\item Catkin
+\item Gazebo
+\item Hector R\+OS packages
+\item Octomap R\+OS packages
+\item Rviz
+\item Teleop twist keyboard
+\item Octovis
+\end{DoxyItemize}
+
+\subsection*{\label{_building}%
+ Building the code}
+
+\subsubsection*{\label{_install-dependencies}%
+ Installing dependencies}
+
+It is assumed here that R\+OS is already installed on the system. In order to install {\itshape hector quadrotor} packages there are two ways and can be done as follows\+:
+
+Installing from binary packages\+: 
+\begin{DoxyCode}
+1 $ sudo apt-get install ros-kinetic-hector-*
+\end{DoxyCode}
+
+
+Or one can build from the source\+: 
+\begin{DoxyCode}
+1 $ mkdir ~/ros\_ws
+2 $ cd ~/ros\_ws
+3 $ wstool init src
+       https://raw.github.com/tu-darmstadt-ros-pkg/hector\_quadrotor/hydro-devel/tutorials.rosinstall
+4 $ catkin\_make 
+\end{DoxyCode}
+
+
+Then workspace needs to be source to use the project.
+
+To install another dependency {\itshape Octomap} following steps can be followed\+: 
+\begin{DoxyCode}
+1 $ sudo apt-get install ros-kinetic-octomap
+2 $ sudo apt-get install ros-kinetic-octomap-mapping 
+3 $ rosdep install octomap\_mapping 
+4 $ rosmake octomap\_mapping
+\end{DoxyCode}
+
+
+The other two dependencies can be installed as follows. Navigate to the src of workspace\+: 
+\begin{DoxyCode}
+1 $ git clone https://github.com/OctoMap/octomap\_rviz\_plugins.git
+2 $ cd ..
+3 $ catkin\_make
+\end{DoxyCode}
+
+
+And, 
+\begin{DoxyCode}
+1 $ sudo apt-get install ros-kinetic-octovis
+\end{DoxyCode}
+
+
+To use teleop package, install the following package as follows\+: 
+\begin{DoxyCode}
+1 $ sudo apt-get install ros-kinetic-teleop-twist-keyboard
+\end{DoxyCode}
+
+
+$>$N\+O\+TE\+: Both, hector and octomap\+\_\+mapping, the packages are notorious for not building properly in the first go. Please ensure that both the packages are installed properly before moving forward.
+
+\subsubsection*{\label{_build-project}%
+ Building the package}
+
+Once all the dependencies are fulfilled, the package can be built as follows. Navigate to the src folder of the workspace\+: 
+\begin{DoxyCode}
+1 $ git clone https://github.com/nr-parikh/voyager.git
+2 $ cd ..
+3 $ catkin\_make
+\end{DoxyCode}
+
+
+\subsection*{\label{_running}%
+ Running the node}
+
+To run the node please follow the instruction given in this section. Open a terminal and launch a file using given below\+: 
+\begin{DoxyCode}
+1 $ roslaunch voyager world.launch
+\end{DoxyCode}
+
+
+The command given above will start gazebo and rviz plugin and a custom world. It will also spawn the robot in that world. To start exploring and mapping the environment, launch the following file\+: 
+\begin{DoxyCode}
+1 $ roslaunch voyager voyager.launch
+\end{DoxyCode}
+
+
+As soon as this command is launched the robot will start exploring the world unless and until it is asked to stop. In order to stop the robot and land it at a safe place, one can use a service {\ttfamily /explore} as follows\+: 
+\begin{DoxyCode}
+1 $ rosservice call /explore false
+\end{DoxyCode}
+
+
+This command will stop the robot from exploring and land it safely on ground. However, it should be ensure that there is a safe place for the robot to land. To start exploring again, one can call the same service but now with {\ttfamily true} and not {\ttfamily false}.
+
+One can also create a new custom world and use that world in this package as well by launching the same file i.\+e. {\itshape world.\+launch} but with following argument\+: 
+\begin{DoxyCode}
+1 $ roslaunch voyager world.launch world:=<path to world file>/<world file>
+\end{DoxyCode}
+
+
+Instead of having the robot to explore on its own, one can manually operate the robot and explore as one wants. This can be done using teleop package after installing it as follows\+: 
+\begin{DoxyCode}
+1 $ roslaunch voyager world.launch use\_teleop:=true
+\end{DoxyCode}
+
+
+\paragraph*{Recording bag file}
+
+The bag file can also be recorded using the following command using the same launch file\+: 
+\begin{DoxyCode}
+1 $ roslaunch voyager world.launch record\_bag:=true
+\end{DoxyCode}
+ This command will record the bag file for the duration of 30 seconds and store it in results directory. $>$N\+O\+TE\+: All the topics are being recorded except the camera topics since the size of the file was off the limit.
+
+\subsubsection*{Saving the tree}
+
+The tree being generated can be save by running the following command\+: 
+\begin{DoxyCode}
+1 $ rosrun octomap\_server octopmap\_saver -f <name of the file>
+\end{DoxyCode}
+
+
+This will save the file at the location from where the command was executed.
+
+\subsection*{\label{_testing}%
+ Testing}
+
+The unit tests for this package can be ran using the following commands. After cloning the repository, navigate to the root of the workspace and run the following command\+: 
+\begin{DoxyCode}
+1 $ catkin\_make run\_tests 
+\end{DoxyCode}
+
+
+Alternatively, the tests can also be run as follows\+: 
+\begin{DoxyCode}
+1 $ rostest voyager test\_voyager.launch
+\end{DoxyCode}
+
+
+\paragraph*{Viewing the generated tree}
+
+To view a tree please install octovis as mentioned in the dependencies section. To view the file execute the following command\+: 
+\begin{DoxyCode}
+1 $ octovis <path to file>
+\end{DoxyCode}
+
+
+For example, a sample map given in the results section can be viewed as\+: 
+\begin{DoxyCode}
+1 $ octovis <path to ws>/voyager/results/sample\_output.ot
+\end{DoxyCode}
+
+
+\subsection*{\label{_output}%
+ Sample output}
+
+Sample output generated by the package by exploring the a custom test worl looks as shown below\+: 
+
+\subsection*{\label{_docs}%
+ Documentation}
+
+The documentation for this project can be found at the path {\ttfamily docs/html/index.\+html}. The documentation for this project is created using doxygen-\/gui. To generate the documentation again, please execute the commands given below\+: 
+\begin{DoxyCode}
+1 $ sudo apt-get install doxygen 
+2 $ sudo apt-get install doxygen-gui
+3 $ doxywizard
+\end{DoxyCode}
+
+
+The last command opens up the G\+UI window of doxygen. First select a dummy folder for doxygen to run from. After that, complete the details as required like name, synopsis, and version of the project. Select this repository as source directory and select a destination directory as well. Please make sure you check scan recursively option in order to generate the complete documentation. Once doxygen runs successfully, navigate to your destination directory, go to html folder and open index.\+html file.
+
+\subsection*{\label{_sip}%
+ Solo Iterative Process}
+
+While developing this module S\+IP process was followed. The link to the S\+IP sheet for this module is \href{https://docs.google.com/spreadsheets/d/11tZz-o4cJSky1bMGR0uIQGLcoGgMJUM74vtqE4XKSQ8/edit?usp=sharing}{\tt here}. Please note that the legend for the code tags is mentioned in the sheet itself.
+
+The spreadsheet contains product backlog which gives overview of how the project was executed. The second spreadsheet is Task backlog which gives details of how each of the task were executed and the time consumed. The thirs spreadsheet is Release backlog which shows the improvements in the estimation of the time required to complete certain task as the module is developed.
 
 Planning notes can be found \href{https://docs.google.com/document/d/1XSsnkajWHP6XwBxO1Zjkb_wmKyFWa5k23H9Gzb1IpiQ/edit?usp=sharing}{\tt here}.
 
-\subsection*{First sprint update}
+\subsection*{\label{_present}%
+ Presentation}
 
-Things done in the first sprint\+: \begin{DoxyVerb}* Install all the packages necessary to run **hector** quadrotor package.
-* Test the working of the necessary packages and check the data being received from the robot
-* Explore various SLAM packages that can be used in this project
-* Create initial UML diagrams
-* Setup Travis for the repository
-* Create SIP log
-\end{DoxyVerb}
+The slides for the final presentation can be found \href{https://docs.google.com/presentation/d/1I7c-rBKHdLnsbCT6sVaDmLgEeXg7oTwyJsZUmdR4C7E/edit?usp=sharing}{\tt here}.
 
+The video of the presentation as well as demo of the project can be found \href{https://youtu.be/Qogoys-AiRE}{\tt here}.
 
-\subsection*{Second sprint update}
+\subsection*{\label{_lic}%
+ License}
 
-Things done in second sprint\+: \begin{DoxyVerb}* Create a custom gazebo world that can be used a testing rig to test the performance of the algorithm 
-* Create stub implementation of the classes 
-* Create isAlive test cases for the classes 
-* Search how to integrate OctoMap wit hector_slam 
-* Try to improve the results of rgbdslam 
-* Control the quadrotor using commandline as well as dummy script.
-* Create planning notes and update SIP tasklog as well as release backlog.  \end{DoxyVerb}
- 
+The license of the document can be found \mbox{[}here\mbox{]}(L\+I\+C\+E\+N\+SE). 
